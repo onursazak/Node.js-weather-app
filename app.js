@@ -8,17 +8,17 @@ const address = process.argv[2];
 if (!address) {
     console.log('Please provide a city');
 } else {
-    geoCode(address, (error, data) => {
+    geoCode(address, (error, { city, location } = {}) => {
         if (error) {
             // function stops.
             return console.log(error);
         }
 
-        forecast(data.city, (error, forecastData) => {
+        forecast(city, (error, forecastData) => {
             if (error) {
                 return console.log(error);
             }
-            console.log(data.location);
+            console.log(location);
             console.log(forecastData);
         })
     })
